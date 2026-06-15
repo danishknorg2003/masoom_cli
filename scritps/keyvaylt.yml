@@ -19,7 +19,7 @@ steps:
       echo "Listing all secrets in Key Vault"
 
       az keyvault secret list \
-        --vault-name dta-eun-ndev-kv-sftp-01 \
+        --vault-name dta-eun-ndev-kv-masoom \
         --query "[].name" \
         -o table
  
