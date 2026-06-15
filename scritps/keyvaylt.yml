@@ -1,1 +1,25 @@
+trigger: none
 
+pool:
+
+  vmImage: 'windows-latest'
+ # name: 'dta-ds-eun-mlops'
+
+steps:
+- checkout: self
+- task: AzureCLI@2
+  displayName: 'Get Key Vault Secret'
+  inputs:
+    azureSubscription: 'My Managed identity'
+    
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+
+      echo "Listing all secrets in Key Vault"
+
+      az keyvault secret list \
+        --vault-name dta-eun-ndev-kv-sftp-01 \
+        --query "[].name" \
+        -o table
+ 
